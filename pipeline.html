@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-time Audio Analysis Pipeline</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+    h1 { text-align: center; color: #333; }
+    .chart-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    canvas { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 10px; }
+    @media (max-width: 800px) { .chart-container { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>Real-time Audio Analysis Pipeline</h1>
+  <div class="chart-container">
+    <canvas id="waveformChart"></canvas>
+    <canvas id="fftChart"></canvas>
+    <canvas id="spectrogramChart"></canvas>
+    <canvas id="mfccChart"></canvas>
+    <canvas id="beatChart"></canvas>
+  </div>
+
+  <script>
+    // 1. Waveform Chart
+    const waveformCtx = document.getElementById('waveformChart').getContext('2d');
+    new Chart(waveformCtx, {
+      type: 'line',
+      data: {
+        labels: Array.from({length: 100}, (_, i) => i),
+        datasets: [{
+          label: 'Waveform',
+          data: Array.from({length: 100}, () => Math.sin(Math.random() * Math.PI) * 1000),
+          borderColor: '#1e90ff',
+          backgroundColor: 'rgba(30, 144, 255, 0.2)',
+          fill: false,
+          tension: 0.4
+        }]
+      },
+      options: {
+        plugins: { title: { display: true, text: 'Waveform (Amplitude vs Time)' } },
+        scales: {
+          x: { title: { display: true, text: 'Sample Index' } },
+          y: { title: { display: true, text: 'Amplitude' } }
+        }
+      }
+    });
+
+    // 2. FFT Spectrum Chart
+    const fftCtx = document.getElementById('fftChart').getContext('2d');
+    new Chart(fftCtx, {
+      type: 'bar',
+      data: {
+        labels: ['0-500', '500-1000', '1000-1500', '1500-2000', '2000-2500', '2500-3000', '3000-3500', '3500-4000', '4000-4500', '4500-5000'],
+        datasets: [{
+          label: 'FFT Spectrum',
+          data: [1200, 800, 600, 400, 300, 200, 150, 100, 50, 25],
+          backgroundColor: '#ff4500',
+          borderColor: '#ff6347',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: { title: { display: true, text: 'FFT Spectrum (Amplitude vs Frequency)' } },
+        scales: {
+          x: { title: { display: true, text: 'Frequency (Hz)' } },
+          y: { title: { display: true, text: 'Amplitude' } }
+        }
+      }
+    });
+
+    // 3. Spectrogram Chart (Simulated as Scatter)
+    const spectrogramCtx = document.getElementById('spectrogramChart').getContext('2d');
+    new Chart(spectrogramCtx, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Spectrogram Points',
+          data: [
+            { x: 0.1, y: 500, r: 10 },
+            { x: 0.2, y: 1000, r: 15 },
+            { x: 0.3, y: 1500, r: 20 },
+            { x: 0.4, y: 2000, r: 12 },
+            { x: 0.5, y: 2500, r: 8 }
+          ],
+          backgroundColor: '#32cd32',
+          borderColor: '#228b22',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: { title: { display: true, text: 'Spectrogram (Frequency vs Time)' } },
+        scales: {
+          x: { title: { display: true, text: 'Time (s)' } },
+          y: { title: { display: true, text: 'Frequency (Hz)' } }
+        }
+      }
+    });
+
+    // 4. MFCC Chart
+    const mfccCtx = document.getElementById('mfccChart').getContext('2d');
+    new Chart(mfccCtx, {
+      type: 'line',
+      data: {
+        labels: ['MFCC1', 'MFCC2', 'MFCC3', 'MFCC4', 'MFCC5', 'MFCC6', 'MFCC7', 'MFCC8', 'MFCC9', 'MFCC10', 'MFCC11', 'MFCC12', 'MFCC13'],
+        datasets: [{
+          label: 'MFCC Coefficients',
+          data: [-300, -200, -150, -100, -50, 0, 50, 100, 80, 60, 40, 20, 10],
+          borderColor: '#ff69b4',
+          backgroundColor: 'rgba(255, 105, 180, 0.2)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        plugins: { title: { display: true, text: 'MFCC Coefficients' } },
+        scales: {
+          x: { title: { display: true, text: 'MFCC Index' } },
+          y: { title: { display: true, text: 'Value' } }
+        }
+      }
+    });
+
+    // 5. Beat Detection Chart
+    const beatCtx = document.getElementById('beatChart').getContext('2d');
+    new Chart(beatCtx, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Detected Beats',
+          data: [
+            { x: 0.5, y: 1 },
+            { x: 1.2, y: 1 },
+            { x: 1.8, y: 1 },
+            { x: 2.4, y: 1 },
+            { x: 3.0, y: 1 }
+          ],
+          backgroundColor: '#ffd700',
+          borderColor: '#ffa500',
+          pointRadius: 10
+        }]
+      },
+      options: {
+        plugins: { title: { display: true, text: 'Detected Beats' } },
+        scales: {
+          x: { title: { display: true, text: 'Time (s)' } },
+          y: { title: { display: true, text: 'Beat' }, min: 0, max: 2 }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
