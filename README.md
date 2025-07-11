@@ -1,6 +1,7 @@
 # Real-time Audio Analysis Pipeline
 
 A production-grade Python tool for capturing system-level audio and rendering dynamic visualizations in real-time.
+<img width="756" height="609" alt="Picture2" src="https://github.com/user-attachments/assets/1a9ff952-04b0-4f23-b5c5-feabb5496e59" />
 
 ## Features
 
