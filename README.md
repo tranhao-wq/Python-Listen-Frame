@@ -3,6 +3,38 @@
 A production-grade Python tool for capturing system-level audio and rendering dynamic visualizations in real-time.
 <img width="756" height="609" alt="Picture2" src="https://github.com/user-attachments/assets/1a9ff952-04b0-4f23-b5c5-feabb5496e59" />
 
+------------
+# 🎧 Live Audio Intelligence
+
+This professional audio analysis pipeline captures system audio output (music, media, applications) and processes it in real-time to generate dynamic visualizations. Built with a modular architecture, it's designed for extensibility and future AI agent integration.
+
+---
+
+## 📺 Demo Video
+
+Watch a full demonstration of the system in action on YouTube:
+
+▶️ [Live Audio Intelligence – Real-Time Audio Visualization](https://www.youtube.com/watch?v=a_DosUgpz_o&list=PLi_I8xIMzFIChxZPtnJY48297-P7C0q0m)
+
+Or explore the full playlist here:  
+📂 [YouTube Playlist](https://www.youtube.com/playlist?list=PLi_I8xIMzFIChxZPtnJY48297-P7C0q0m)
+
+---
+
+## 🔖 Features
+
+- 🎵 Capture system audio output in real-time  
+- 📊 Live visual feedback with customizable graphs  
+- ⚙️ Modular architecture for easy AI agent plug-ins  
+- 🧠 Designed for integration with GPT and other AI models  
+- ⏱ Ultra-low latency processing
+
+---
+
+## 📌 Hashtags
+
+
+
 ## Features
 
 - **System Audio Capture**: Loopback audio capture across Windows, macOS, Linux
